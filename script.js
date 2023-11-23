@@ -1,10 +1,9 @@
-var usuario = new Object()
-usuario.nick = "usuario"
-usuario.senha = "12345"
+usuario = localStorage
 
 function cadastro(user, pass, pass2) {
     if (pass == pass2 && user!='' && pass!='') {
-        usuario = {user, pass}
+        localStorage.setItem("nick", user)
+        localStorage.setItem("senha", pass)
         window.location = "index.html"
     } else if (user == '' || pass == '' || pass2 == '') {
         document.getElementById('alert').innerHTML = "Por favor, digite seu usuario e senha!"
@@ -19,7 +18,9 @@ function cadastro(user, pass, pass2) {
 }
 
 function validar(user, pass) {
-    if (user == usuario.nick && pass == usuario.senha) {
+    const usuario = localStorage.getItem("nick")
+    const senha = localStorage.getItem("senha")
+    if (user == usuario && pass == senha) {
         window.location = "inicio.html"
     }
     else {
